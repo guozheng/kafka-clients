@@ -51,9 +51,9 @@ public class AtLeastOnceConsumer {
         String consumeGroup = "cg1";
         props.put("group.id", consumeGroup);
 
+        // To run with at least once delivery, either set auto commit to false, OR set it to true with a long interval
         // Set this property, if auto commit should happen.
         props.put("enable.auto.commit", "true");
-
         // Make Auto commit interval to a big number so that auto commit does not happen,
         // we are going to control the offset commit via consumer.commitSync(); after processing record.
         props.put("auto.commit.interval.ms", "999999999999");

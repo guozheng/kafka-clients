@@ -69,9 +69,9 @@ public class AtMostOnceConsumer {
         String consumeGroup = "cg1";
         props.put("group.id", consumeGroup);
 
+        ///////// To run with most once delivery, set auto commit to true with a short interval
         // Set this property, if auto commit should happen.
         props.put("enable.auto.commit", "true");
-
         // Auto commit interval is an important property, kafka would commit offset at this interval.
         props.put("auto.commit.interval.ms", "101");
 
@@ -85,7 +85,7 @@ public class AtMostOnceConsumer {
         props.put("session.timeout.ms", "6001");
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        return new KafkaConsumer<String, String>(props);
+        return new KafkaConsumer<>(props);
     }
 
     private static void processRecords(KafkaConsumer<String, String> consumer) throws InterruptedException {

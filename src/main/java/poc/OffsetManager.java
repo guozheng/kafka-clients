@@ -45,7 +45,7 @@ public class OffsetManager {
     }
 
     /**
-     * @return he last offset + 1 for the provided topic and partition.
+     * @return the last offset + 1 for the provided topic and partition.
      */
     long readOffsetFromExternalStore(String topic, int partition) {
 

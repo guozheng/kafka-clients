@@ -36,8 +36,7 @@ public class ProducerExample {
         props.put("bootstrap.servers", "localhost:9092");
         props.put("acks", "all");
         props.put("retries", 0);
-        // This property controls how much bytes the sender would wait to batch up the content before publishing to Kafka.
-        props.put("batch.size", 10);
+        props.put("batch.size", 10); // This property controls how much bytes the sender would wait to batch up the content before publishing to Kafka.
         props.put("linger.ms", 1);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -47,11 +46,11 @@ public class ProducerExample {
     }
 
     private static void sendMessages(Producer<String, String> producer) {
-        String topic = "normal-topic";
+        final String topic = "normal-topic";
         int partition = 0;
         long record = 1;
         for (int i = 1; i <= 10; i++) {
-            producer.send(new ProducerRecord<String, String>(topic, partition, Long.toString(record), Long.toString(record++)));
+            producer.send(new ProducerRecord<>(topic, partition, Long.toString(record), Long.toString(record++)));
         }
     }
 
